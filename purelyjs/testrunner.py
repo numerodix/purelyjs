@@ -2,6 +2,8 @@
 
 import os
 import re
+import shutil
+import tempfile
 import time
 
 from .io import write
@@ -10,7 +12,8 @@ from .testmodule import TestModule
 
 
 class TestRunner(object):
-    def __init__(self, libs=None, tests=None, verbose=False):
+    def __init__(self, libs=None, tests=None,
+                 keep_modules=False, verbose=False):
         self.js_exe = 'js'  # TODO: check exists
         self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
 
@@ -24,6 +27,7 @@ class TestRunner(object):
 
         self.libs = libs + [purely_js]
         self.tests = tests
+        self.keep_modules = keep_modules
         self.verbose = verbose
 
     def find_all_test_cases(self, filepaths):
@@ -41,7 +45,7 @@ class TestRunner(object):
         test_cases = self.regex_test_case.findall(content)
         return test_cases
 
-    def run(self):
+    def run_tests(self, testdir):
         test_cases = self.find_all_test_cases(self.tests)
         #self.check_test_case_uniqueness()  # TODO
 
@@ -52,7 +56,13 @@ class TestRunner(object):
 
         modules = []
         for i, test_case in enumerate(test_cases, 1):
-            module = TestModule(self.js_exe, self.libs + self.tests, test_case)
+            module = TestModule(
+                testdir,
+                self.js_exe,
+                self.libs + self.tests,
+                test_case,
+                keep_module=self.keep_modules,
+            )
             modules.append((i, module))
 
             if self.verbose:
@@ -88,3 +98,11 @@ class TestRunner(object):
             writeln()
             writeln('FAILED (failed=%s)' % len(failed_modules))
             return False
+
+    def run(self):
+        testdir = tempfile.mkdtemp(prefix='purelyjs_testrun_')
+        try:
+            self.run_tests(testdir)
+        finally:
+            if not self.keep_modules:
+                shutil.rmtree(testdir)

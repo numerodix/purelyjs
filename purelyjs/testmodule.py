@@ -5,17 +5,24 @@ from .io import invoke
 
 
 class TestModule(object):
-    def __init__(self, js_exe, modules, test_case):
+    def __init__(self, testdir, js_exe, modules, test_case, keep_module=False):
+        self.testdir = testdir
         self.js_exe = js_exe
         self.modules = modules
         self.test_case = test_case
+        self.keep_module = keep_module
 
         self.passed = None
         self.stderr = None
         self.filepath = None
 
     def assemble(self):
-        (fd, self.filepath) = tempfile.mkstemp(text=True)
+        (fd, self.filepath) = tempfile.mkstemp(
+            dir=self.testdir,
+            prefix='%s_' % self.test_case,
+            suffix='.js',
+            text=True,
+        )
 
         try:
             # concatenate modules
@@ -45,4 +52,5 @@ class TestModule(object):
                 self.stderr = stderr
 
         finally:
-            os.unlink(self.filepath)
+            if not self.keep_module:
+                os.unlink(self.filepath)

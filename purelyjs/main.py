@@ -12,11 +12,13 @@ def main():
     parser = optparse.OptionParser()
     parser.add_option('--lib', action='append')
     parser.add_option('--test', action='append')
+    parser.add_option('-k', '--keep-modules', action='store_true')
     parser.add_option('-v', '--verbose', action='store_true')
     (options, args) = parser.parse_args()
 
     libs = []
     tests = []
+    keep_modules = options.keep_modules
     verbose = options.verbose
 
     if os.path.exists(CONFIG_FILE):
@@ -27,7 +29,12 @@ def main():
     if options.test:
         tests = options.test
 
-    runner = TestRunner(libs=libs, tests=tests, verbose=verbose)
+    runner = TestRunner(
+        keep_modules=keep_modules,
+        libs=libs,
+        tests=tests,
+        verbose=verbose,
+    )
     if runner.run() is False:
         sys.exit(1)
 
