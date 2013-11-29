@@ -27,12 +27,14 @@ var purely = {
 
 
     assertEqual: function(x, y) {
+        // jshint -W018
         if (!(x === y)) {
             purely.throwAssertionError(x.toString() + ' === ' + y.toString());
         }
     },
 
     assertNotEqual: function(x, y) {
+        // jshint -W018
         if (!(x !== y)) {
             purely.throwAssertionError(x.toString() + ' !== ' + y.toString());
         }
@@ -40,24 +42,28 @@ var purely = {
 
 
     assertGreater: function(x, y) {
+        // jshint -W018
         if (!(x > y)) {
             purely.throwAssertionError(x.toString() + ' > ' + y.toString());
         }
     },
 
     assertGreaterEqual: function(x, y) {
+        // jshint -W018
         if (!(x >= y)) {
             purely.throwAssertionError(x.toString() + ' >= ' + y.toString());
         }
     },
 
     assertLess: function(x, y) {
+        // jshint -W018
         if (!(x < y)) {
             purely.throwAssertionError(x.toString() + ' < ' + y.toString());
         }
     },
 
     assertLessEqual: function(x, y) {
+        // jshint -W018
         if (!(x <= y)) {
             purely.throwAssertionError(x.toString() + ' <= ' + y.toString());
         }
