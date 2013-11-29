@@ -9,7 +9,7 @@ def invoke(args, cwd=None):
     out = str(out).strip()
     err = str(err).strip()
     ret = popen.returncode
-    return ret == 0, err
+    return ret == 0, out, err
 
 def write(line):
     sys.stderr.write(line)

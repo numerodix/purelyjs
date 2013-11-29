@@ -1,13 +1,11 @@
 import os
 import tempfile
 
-from .io import invoke
-
 
 class TestModule(object):
-    def __init__(self, testdir, js_exe, modules, test_case, keep_module=False):
+    def __init__(self, testdir, interpreter, modules, test_case, keep_module=False):
         self.testdir = testdir
-        self.js_exe = js_exe
+        self.interpreter = interpreter
         self.modules = modules
         self.test_case = test_case
         self.keep_module = keep_module
@@ -43,7 +41,7 @@ class TestModule(object):
         self.assemble()
 
         try:
-            passed, stderr = invoke([self.js_exe, self.filepath])
+            passed, stderr = self.interpreter.run_module(self.filepath)
             if passed:
                 self.passed = True
 

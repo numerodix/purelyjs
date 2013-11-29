@@ -8,13 +8,13 @@ import time
 
 from .io import write
 from .io import writeln
+from .interpreter import Interpreter
 from .testmodule import TestModule
 
 
 class TestRunner(object):
-    def __init__(self, libs=None, tests=None,
+    def __init__(self, libs=None, tests=None, interpreters=None,
                  keep_modules=False, verbose=False):
-        self.js_exe = 'js'  # TODO: check exists
         self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
 
         purely_pkgroot = os.path.dirname(__file__)
@@ -29,6 +29,8 @@ class TestRunner(object):
         self.tests = tests
         self.keep_modules = keep_modules
         self.verbose = verbose
+
+        self.interpreter = Interpreter(interpreters)
 
     def find_all_test_cases(self, filepaths):
         test_cases = []
@@ -51,14 +53,14 @@ class TestRunner(object):
 
         num_tests = len(test_cases)
 
-        writeln('Running %s tests' % num_tests)
+        writeln('Running %s tests on %s' % (num_tests, self.interpreter.exe))
         t_start = time.time()
 
         modules = []
         for i, test_case in enumerate(test_cases, 1):
             module = TestModule(
                 testdir,
-                self.js_exe,
+                self.interpreter,
                 self.libs + self.tests,
                 test_case,
                 keep_module=self.keep_modules,
