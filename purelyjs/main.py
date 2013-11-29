@@ -3,7 +3,7 @@ import os
 import sys
 
 from .options import parse_config
-from .runner import TestRunner
+from .testrunner import TestRunner
 
 
 CONFIG_FILE = 'purelyjs.ini'
