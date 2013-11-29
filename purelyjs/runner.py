@@ -7,11 +7,14 @@ import time
 
 from .io import write
 from .io import writeln
+from .options import parse_config
 from .testmodule import TestModule
 
 
+CONFIG_FILE = 'purelyjs.ini'
+
 class TestRunner(object):
-    def __init__(self, libs, tests):
+    def __init__(self, libs=None, tests=None):
         self.js_exe = 'js'
         self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
 
@@ -90,6 +93,14 @@ if __name__ == '__main__':
     parser.add_option('--test', action='append')
     (options, args) = parser.parse_args()
 
-    runner = TestRunner(options.lib, options.test)
+    if os.path.exists(CONFIG_FILE):
+        libs, tests = parse_config(CONFIG_FILE)
+
+    if options.lib:
+        libs = options.lib
+    if options.test:
+        tests = options.test
+
+    runner = TestRunner(libs=libs, tests=tests)
     if runner.run() is False:
         sys.exit(1)
