@@ -10,7 +10,7 @@ from .testmodule import TestModule
 
 
 class TestRunner(object):
-    def __init__(self, libs=None, tests=None):
+    def __init__(self, libs=None, tests=None, verbose=False):
         self.js_exe = 'js'  # TODO: check exists
         self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
 
@@ -24,6 +24,7 @@ class TestRunner(object):
 
         self.libs = libs + [purely_js]
         self.tests = tests
+        self.verbose = verbose
 
     def find_all_test_cases(self, filepaths):
         test_cases = []
@@ -52,13 +53,20 @@ class TestRunner(object):
         modules = []
         for i, test_case in enumerate(test_cases, 1):
             module = TestModule(self.js_exe, self.libs + self.tests, test_case)
-            module.run()
             modules.append((i, module))
+
+            if self.verbose:
+                write('%s... ' % module.test_case)
+
+            module.run()
 
             if module.passed:
                 write('.')
             else:
                 write('F')
+
+            if self.verbose:
+                writeln()
 
         writeln()
         writeln()
