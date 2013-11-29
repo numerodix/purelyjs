@@ -2,6 +2,7 @@ from .io import invoke
 
 
 class Interpreter(object):
+    # Assuming whatever is called "js" on the path is likely to work best
     known_engines = ['js', 'rhino']
 
     def __init__(self, exes=None):
@@ -10,7 +11,7 @@ class Interpreter(object):
 
         if not self.exe:
             raise ValueError("No js engine could be found, tried: %s"
-                            % ', '.join(engines))
+                             % ', '.join(engines))
 
     def detect(self, engines):
         found = None
