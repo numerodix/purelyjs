@@ -1,80 +1,82 @@
-function throwAssertionError(msg) {
-    // throws TypeError as there isn't a built-in assertion error type
-    throw TypeError('AssertionError: ' + msg);
+var purely = {
+    throwAssertionError: function(msg) {
+        // throws TypeError as there isn't a built-in assertion error type
+        throw TypeError('AssertionError: ' + msg);
 
-    /*
-        // Safer alternative?
-        throw {
-            name: 'TypeError',
-            message: 'AssertionError: ' + x.toString() + ' === ' + y.toString()
-        };
-    */
-};
+        /*
+            // Safer alternative?
+            throw {
+                name: 'TypeError',
+                message: 'AssertionError: ' + x.toString() + ' === ' + y.toString()
+            };
+        */
+    },
 
-function contains(item, arr) {
-    var found = false;
+    contains: function(item, arr) {
+        var found = false;
 
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == item) {
-            found = true;
-            break;
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == item) {
+                found = true;
+                break;
+            }
         }
-    }
 
-    return found;
-}
-
-
-function assertEqual(x, y) {
-    if (!(x === y)) {
-        throwAssertionError(x.toString() + ' === ' + y.toString());
-    }
-}
-
-function assertNotEqual(x, y) {
-    if (!(x !== y)) {
-        throwAssertionError(x.toString() + ' !== ' + y.toString());
-    }
-}
+        return found;
+    },
 
 
-function assertGreater(x, y) {
-    if (!(x > y)) {
-        throwAssertionError(x.toString() + ' > ' + y.toString());
-    }
-}
+    assertEqual: function(x, y) {
+        if (!(x === y)) {
+            throwAssertionError(x.toString() + ' === ' + y.toString());
+        }
+    },
 
-function assertGreaterEqual(x, y) {
-    if (!(x >= y)) {
-        throwAssertionError(x.toString() + ' >= ' + y.toString());
-    }
-}
-
-function assertLess(x, y) {
-    if (!(x < y)) {
-        throwAssertionError(x.toString() + ' < ' + y.toString());
-    }
-}
-
-function assertLessEqual(x, y) {
-    if (!(x <= y)) {
-        throwAssertionError(x.toString() + ' <= ' + y.toString());
-    }
-}
+    assertNotEqual: function(x, y) {
+        if (!(x !== y)) {
+            throwAssertionError(x.toString() + ' !== ' + y.toString());
+        }
+    },
 
 
-function assertIn(item, arr) {
-    var found = contains(item, arr);
+    assertGreater: function(x, y) {
+        if (!(x > y)) {
+            throwAssertionError(x.toString() + ' > ' + y.toString());
+        }
+    },
 
-    if (!found) {
-        throwAssertionError(item.toString() + ' not in ' + arr.toString());
-    }
-}
+    assertGreaterEqual: function(x, y) {
+        if (!(x >= y)) {
+            throwAssertionError(x.toString() + ' >= ' + y.toString());
+        }
+    },
 
-function assertNotIn(item, arr) {
-    var found = contains(item, arr);
+    assertLess: function(x, y) {
+        if (!(x < y)) {
+            throwAssertionError(x.toString() + ' < ' + y.toString());
+        }
+    },
 
-    if (found) {
-        throwAssertionError(item.toString() + ' in ' + arr.toString());
+    assertLessEqual: function(x, y) {
+        if (!(x <= y)) {
+            throwAssertionError(x.toString() + ' <= ' + y.toString());
+        }
+    },
+
+
+    assertIn: function(item, arr) {
+        var found = purely.contains(item, arr);
+
+        if (!found) {
+            throwAssertionError(item.toString() + ' not in ' + arr.toString());
+        }
+    },
+
+    assertNotIn: function(item, arr) {
+        var found = purely.contains(item, arr);
+
+        if (found) {
+            throwAssertionError(item.toString() + ' in ' + arr.toString());
+        }
     }
 }
