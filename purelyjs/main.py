@@ -2,7 +2,7 @@ import optparse
 import os
 import sys
 
-from .options import parse_config
+from .config import parse_config
 from .testrunner import TestRunner
 
 
