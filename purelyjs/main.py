@@ -14,6 +14,9 @@ def main():
     parser.add_option('--test', action='append')
     (options, args) = parser.parse_args()
 
+    libs = []
+    tests = []
+
     if os.path.exists(CONFIG_FILE):
         libs, tests = parse_config(CONFIG_FILE)
 
