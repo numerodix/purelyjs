@@ -28,38 +28,38 @@ var purely = {
 
     assertEqual: function(x, y) {
         if (!(x === y)) {
-            throwAssertionError(x.toString() + ' === ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' === ' + y.toString());
         }
     },
 
     assertNotEqual: function(x, y) {
         if (!(x !== y)) {
-            throwAssertionError(x.toString() + ' !== ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' !== ' + y.toString());
         }
     },
 
 
     assertGreater: function(x, y) {
         if (!(x > y)) {
-            throwAssertionError(x.toString() + ' > ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' > ' + y.toString());
         }
     },
 
     assertGreaterEqual: function(x, y) {
         if (!(x >= y)) {
-            throwAssertionError(x.toString() + ' >= ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' >= ' + y.toString());
         }
     },
 
     assertLess: function(x, y) {
         if (!(x < y)) {
-            throwAssertionError(x.toString() + ' < ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' < ' + y.toString());
         }
     },
 
     assertLessEqual: function(x, y) {
         if (!(x <= y)) {
-            throwAssertionError(x.toString() + ' <= ' + y.toString());
+            purely.throwAssertionError(x.toString() + ' <= ' + y.toString());
         }
     },
 
@@ -68,7 +68,7 @@ var purely = {
         var found = purely.contains(item, arr);
 
         if (!found) {
-            throwAssertionError(item.toString() + ' not in ' + arr.toString());
+            purely.throwAssertionError(item.toString() + ' not in ' + arr.toString());
         }
     },
 
@@ -76,7 +76,7 @@ var purely = {
         var found = purely.contains(item, arr);
 
         if (found) {
-            throwAssertionError(item.toString() + ' in ' + arr.toString());
+            purely.throwAssertionError(item.toString() + ' in ' + arr.toString());
         }
     }
 }
