@@ -16,6 +16,7 @@ class Interpreter(object):
         found = None
 
         for engine in engines:
+            # NOTE: Very platform specific
             success, stdout, stderr = invoke(['which', engine])
 
             if success:
