@@ -10,8 +10,8 @@ class Interpreter(object):
         self.exe = self.detect(engines)
 
         if not self.exe:
-            raise ValueError("No js engine could be found, tried: %s"
-                             % ', '.join(engines))
+            raise RuntimeError("No js engine could be found, tried: %s"
+                               % ', '.join(engines))
 
     def detect(self, engines):
         found = None
