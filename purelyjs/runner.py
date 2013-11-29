@@ -18,6 +18,11 @@ class TestRunner(object):
         purely_pkgroot = os.path.dirname(__file__)
         purely_js = os.path.join(purely_pkgroot, 'js', 'purely.js')
 
+        if libs is None:
+            raise ValueError("Must provide libs")
+        if tests is None:
+            raise ValueError("Must provide libs")
+
         self.libs = libs + [purely_js]
         self.tests = tests
 
