@@ -2,20 +2,16 @@
 
 import os
 import re
-import sys
 import time
 
 from .io import write
 from .io import writeln
-from .options import parse_config
 from .testmodule import TestModule
 
 
-CONFIG_FILE = 'purelyjs.ini'
-
 class TestRunner(object):
     def __init__(self, libs=None, tests=None):
-        self.js_exe = 'js'
+        self.js_exe = 'js'  # TODO: check exists
         self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
 
         purely_pkgroot = os.path.dirname(__file__)
@@ -84,23 +80,3 @@ class TestRunner(object):
             writeln()
             writeln('FAILED (failed=%s)' % len(failed_modules))
             return False
-
-
-if __name__ == '__main__':
-    import optparse
-    parser = optparse.OptionParser()
-    parser.add_option('--lib', action='append')
-    parser.add_option('--test', action='append')
-    (options, args) = parser.parse_args()
-
-    if os.path.exists(CONFIG_FILE):
-        libs, tests = parse_config(CONFIG_FILE)
-
-    if options.lib:
-        libs = options.lib
-    if options.test:
-        tests = options.test
-
-    runner = TestRunner(libs=libs, tests=tests)
-    if runner.run() is False:
-        sys.exit(1)
