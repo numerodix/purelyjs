@@ -79,4 +79,4 @@ var purely = {
             purely.throwAssertionError(item.toString() + ' in ' + arr.toString());
         }
     }
-}
+};
