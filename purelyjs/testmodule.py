@@ -12,9 +12,10 @@ class TestModule(object):
 
         self.passed = None
         self.stderr = None
+        self.filepath = None
 
     def assemble(self):
-        (fd, filepath) = tempfile.mkstemp(text=True)
+        (fd, self.filepath) = tempfile.mkstemp(text=True)
 
         try:
             # concatenate modules
@@ -31,13 +32,11 @@ class TestModule(object):
         finally:
             os.close(fd)
 
-        return filepath
-
     def run(self):
-        filepath = self.assemble()
+        self.assemble()
 
         try:
-            passed, stderr = invoke([self.js_exe, filepath])
+            passed, stderr = invoke([self.js_exe, self.filepath])
             if passed:
                 self.passed = True
 
@@ -46,4 +45,4 @@ class TestModule(object):
                 self.stderr = stderr
 
         finally:
-            os.unlink(filepath)
+            os.unlink(self.filepath)

@@ -74,7 +74,7 @@ class TestRunner(object):
         failed_modules = [(i, m) for (i, m) in modules if not m.passed]
         for i, module in failed_modules:
             writeln('=' * 70)
-            writeln('FAILED (%s): %s' % (i, module.test_case))
+            writeln('FAILED (%s): %s (%s)' % (i, module.test_case, module.filepath))
             writeln('-' * 70)
             writeln(module.stderr)
             writeln()
