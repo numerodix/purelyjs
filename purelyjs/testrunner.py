@@ -6,6 +6,7 @@ import shutil
 import tempfile
 import time
 
+from .io import expand_patterns
 from .io import write
 from .io import writeln
 from .interpreter import Interpreter
@@ -20,13 +21,12 @@ class TestRunner(object):
         purely_pkgroot = os.path.dirname(__file__)
         purely_js = os.path.join(purely_pkgroot, 'js', 'purely.js')
 
-        if libs is None:
-            raise ValueError("Must provide libs")
+        self.libs = libs or []
         if tests is None:
-            raise ValueError("Must provide libs")
+            raise ValueError("Must provide tests")
 
-        self.libs = libs + [purely_js]
-        self.tests = tests
+        self.libs = expand_patterns(libs + [purely_js])
+        self.tests = expand_patterns(tests)
         self.keep_modules = keep_modules
         self.verbose = verbose
 

@@ -1,6 +1,21 @@
+import fnmatch
+import os
 import subprocess
 import sys
 
+
+def expand_patterns(patterns):
+    files = []
+
+    for pattern in patterns:
+        dir, pat = os.path.split(pattern)
+        dir = dir if dir else '.'
+        fs = os.listdir(dir)
+        fs = fnmatch.filter(fs, pat)
+        fs = [os.path.join(dir, f) for f in fs]
+        files.extend(fs)
+
+    return files
 
 def invoke(args, cwd=None):
     popen = subprocess.Popen(args, cwd=cwd,
