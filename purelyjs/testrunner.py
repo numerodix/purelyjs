@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 
+from collections import Counter
+import logging
 import os
 import re
 import shutil
 import tempfile
 import time
+
+logging.basicConfig()
 
 from .io import expand_patterns
 from .io import write
@@ -55,9 +59,15 @@ class TestRunner(object):
 
         return test_cases
 
+    def check_test_case_uniqueness(self, test_cases):
+        counter = Counter(test_cases)
+        for test_case, num in counter.most_common():
+            if num > 1:
+                logging.warn("Test case %s defined more than once" % test_case)
+
     def run_tests(self, testdir):
         test_cases = self.find_all_test_cases(self.tests)
-        #self.check_test_case_uniqueness()  # TODO
+        self.check_test_case_uniqueness(test_cases)
 
         num_tests = len(test_cases)
 
