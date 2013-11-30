@@ -16,7 +16,10 @@ from .testmodule import TestModule
 class TestRunner(object):
     def __init__(self, libs=None, tests=None, interpreters=None,
                  keep_modules=False, verbose=False):
-        self.regex_test_case = re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)')
+        self.regexes_test_case = [
+            re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)'),
+            re.compile('^(?m)function\s+(test_[^\s()]+)'),
+        ]
 
         purely_pkgroot = os.path.dirname(__file__)
         purely_js = os.path.join(purely_pkgroot, 'js', 'purely.js')
@@ -44,7 +47,10 @@ class TestRunner(object):
         with open(filepath, 'rt') as f:
             content = f.read()
 
-        test_cases = self.regex_test_case.findall(content)
+        test_cases = []
+        for regex in self.regexes_test_case:
+            test_cases.extend(regex.findall(content))
+
         return test_cases
 
     def run_tests(self, testdir):
