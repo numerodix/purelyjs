@@ -17,7 +17,9 @@ class TestRunner(object):
     def __init__(self, libs=None, tests=None, interpreters=None,
                  keep_modules=False, verbose=False):
         self.regexes_test_case = [
+            # testSomething
             re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)'),
+            # test_something
             re.compile('^(?m)function\s+(test_[^\s()]+)'),
         ]
 
