@@ -1,8 +1,8 @@
 purely.js
 =========
 
-* Command line test runner with minimal hassle
-  (only needs a javascript engine like node.js/rhino - no browser).
+* Command line test runner with minimal hassle (only needs a javascript shell
+  like node.js/rhino/spidermonkey - no browser).
 * Small library of JUnit-style testing primitives.
 
 
