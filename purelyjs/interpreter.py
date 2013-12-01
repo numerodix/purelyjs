@@ -34,6 +34,7 @@ class Interpreter(object):
 
     def run_test_module(self, exe):
         (fd, filepath) = tempfile.mkstemp()
+
         try:
             content = (
                 'try {'
@@ -50,6 +51,7 @@ class Interpreter(object):
             success, stdout, stderr = invoke([exe, filepath])
             if success and '4' == stdout.strip():
                 return True
+
         finally:
             os.close(fd)
             os.unlink(filepath)
