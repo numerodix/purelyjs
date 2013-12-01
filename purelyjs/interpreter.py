@@ -37,13 +37,14 @@ class Interpreter(object):
         try:
             content = (
                 'try {'
-                '  console.log(1 + 3);'  # node.js
+                '  print;'
                 '} catch (e) {'
                 '  if (e.name !== "ReferenceError") {'
                 '    throw e;'
                 '  }'
-                '  print(1 + 3);'  # rhino/spidermonkey
-                '}')
+                '  print = console.log;'  # node.js
+                '}'
+                'print(1 + 3);')
             os.write(fd, content)
 
             success, stdout, stderr = invoke([exe, filepath])
