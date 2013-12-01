@@ -15,6 +15,7 @@ def parse_config(filepath):
     libs = []
     tests = []
 
+    # TODO: add warning for unrecognized keys?
     for key, value in cfg.items(section_name):
         if key == 'interpreters':
             interpreters = re.split('\s+', value)
