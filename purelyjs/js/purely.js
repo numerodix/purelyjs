@@ -84,5 +84,22 @@ var purely = {
         if (found) {
             purely.throwAssertionError(item.toString() + ' in ' + arr.toString());
         }
+    },
+
+
+    assertRaises: function(exceptionName, func) {
+        var thrown = false;
+
+        try {
+            func();
+        } catch (e) {
+            if (e.name === exceptionName) {
+                thrown = true;
+            }
+        }
+
+        if (!thrown) {
+            purely.throwAssertionError(exceptionName + ' not thrown');
+        }
     }
 };
