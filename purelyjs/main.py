@@ -10,7 +10,7 @@ CONFIG_FILE = 'purelyjs.ini'
 
 def main():
     parser = optparse.OptionParser()
-    parser.add_option('--interpreter', action='append',
+    parser.add_option('-i', '--interpreter', action='append',
                       help='Path to js interpreter to run on')
     parser.add_option('--lib', action='append',
                       help='Add library module to test run')
