@@ -12,9 +12,7 @@ Theory
 The composition of a typical Javascript application tends to be a mix of
 library/framework code (jQuery, Backbone, Angular.js etc) and application
 specific code. Frameworks provide many hooks that allow the programmer to
-customize their behavior, which is accomplished through callbacks. Very often a
-callback needs pieces of application state to work, so it captures variables in
-its scope (and that makes it a closure).
+customize their behavior, which is accomplished through callbacks.
 
 This tight coupling between the application and the framework makes it hard to
 unit test the application logic (the framework is generally known to work well
@@ -29,7 +27,7 @@ observing the effects (Selenium, phantomjs, etc).
      Application
      --------------------------------------------
      |                                          |
-     |       Callback/closure spaghetti         |
+     |            Callback spaghetti            |
      |         Land of the side effect          |
      |                                          |
      --------------------------------------------
