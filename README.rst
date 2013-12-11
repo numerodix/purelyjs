@@ -24,6 +24,8 @@ components are updated etc. Many heavy weight testing frameworks have sprung up
 to address this need, and they are centered around driving a browser and
 observing the effects (Selenium, phantomjs, etc).
 
+.. code::
+
      Application
      --------------------------------------------
      |                                          |
@@ -50,6 +52,8 @@ The basic idea behind purely is that you split out your pure code from
 your side-effectful code and write tests against it using the primitives
 purely provides. Your stack will look like this:
 
+.. code::
+
      Stack
      --------------------------------------------
      |                                          |
@@ -71,6 +75,8 @@ javascript engine on the command line. First it will scan your test code to
 find all the tests. For each test it will assemble a test module as shown below
 (a single file containing all the code, plus the invocation of that one test)
 and execute it.
+
+.. code::
 
      Test module
      --------------------------------------------      -----
