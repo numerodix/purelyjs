@@ -7,7 +7,7 @@ var purely = {
             // Safer alternative?
             throw {
                 name: 'TypeError',
-                message: 'AssertionError: ' + x.toString() + ' === ' + y.toString()
+                message: 'AssertionError: ' + msg
             };
         */
     },
@@ -100,6 +100,22 @@ var purely = {
 
         if (!thrown) {
             purely.throwAssertionError(exceptionName + ' not thrown');
+        }
+    },
+
+    assertRaisesAssertion: function(func) {
+        var thrown = false;
+
+        try {
+            func();
+        } catch (e) {
+            if ((e.name == 'TypeError') && (/^AssertionError: /.test(e.message))) {
+                thrown = true;
+            }
+        }
+
+        if (!thrown) {
+            purely.throwAssertionError('AssertionError not thrown');
         }
     }
 };

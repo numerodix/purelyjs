@@ -1,42 +1,80 @@
-function testEqual() {
+function testAssertEqual() {
     purely.assertEqual(1, 1);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertEqual(1, 2);
+    });
 }
 
-function testNotEqual() {
+function testAssertNotEqual() {
     purely.assertNotEqual(1, 2);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertNotEqual(2, 2);
+    });
 }
 
 
-function testGreater() {
+function testAssertGreater() {
     purely.assertGreater(2, 1);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertGreater(2, 2);
+    });
 }
 
-function testGreaterEqual() {
+function testAssertGreaterEqual() {
     purely.assertGreaterEqual(2, 1);
     purely.assertGreaterEqual(2, 2);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertGreaterEqual(1, 2);
+    });
 }
 
-function testLess() {
+function testAssertLess() {
     purely.assertLess(1, 2);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertLess(2, 2);
+    });
 }
 
-function testLessEqual() {
+function testAssertLessEqual() {
     purely.assertLessEqual(1, 2);
     purely.assertLessEqual(2, 2);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertLessEqual(2, 1);
+    });
 }
 
 
-function testIn() {
+function testAssertIn() {
     purely.assertIn(1, [1, 2]);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertIn(1, [2, 3]);
+    });
 }
 
-function testNotIn() {
+function testAssertNotIn() {
     purely.assertNotIn(3, [1, 2]);
+
+    purely.assertRaisesAssertion(function() {
+        purely.assertNotIn(1, [1, 2]);
+    });
 }
 
 
-function testRaises() {
+function testAssertRaises() {
     purely.assertRaises("ReferenceError", function() {
-        x + 1;
+        var y = x + 1;
+    });
+}
+
+function testAssertRaisesAssertion() {
+    purely.assertRaisesAssertion(function() {
+        purely.assertEqual(1, 2);
     });
 }
