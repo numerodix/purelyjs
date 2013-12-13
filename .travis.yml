@@ -1,6 +1,9 @@
 language: python
 python:
   - "2.7"
+  - "3.2"
+  - "3.3"
+  - "pypy"
 before_install:
   - sudo apt-get install nodejs
 install: "python setup.py install"

@@ -46,10 +46,12 @@ class Interpreter(object):
                 '  print = console.log;'  # node.js
                 '}'
                 'print(1 + 3);')
+            content = content.encode('utf8')
             os.write(fd, content)
 
             success, stdout, stderr = invoke([exe, filepath])
-            if success and '4' == stdout.strip():
+            content = stdout.decode('utf8')
+            if success and '4' == content:
                 return True
 
         finally:

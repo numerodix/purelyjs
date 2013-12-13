@@ -21,8 +21,8 @@ def invoke(args, cwd=None):
     popen = subprocess.Popen(args, cwd=cwd,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     (out, err) = popen.communicate()
-    out = str(out).strip()
-    err = str(err).strip()
+    out = out.strip()
+    err = err.strip()
     ret = popen.returncode
     return ret == 0, out, err
 

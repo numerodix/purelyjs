@@ -1,9 +1,13 @@
-import ConfigParser
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser
+
 import re
 
 
 def parse_config(filepath):
-    cfg = ConfigParser.ConfigParser()
+    cfg = ConfigParser()
     cfg.read(filepath)
 
     section_name = 'purelyjs'

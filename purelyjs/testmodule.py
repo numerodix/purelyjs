@@ -28,11 +28,14 @@ class TestModule(object):
                 with open(module, 'rt') as f:
                     content = f.read()
 
+                content = '%s\n\n' % content
+                content = content.encode('utf8')
                 os.write(fd, content)
-                os.write(fd, '\n\n')
 
             # invoke the test case function
-            os.write(fd, '%s();\n' % self.test_case)
+            content = '%s();\n' % self.test_case
+            content = content.encode('utf8')
+            os.write(fd, content)
 
         finally:
             os.close(fd)
