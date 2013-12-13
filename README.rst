@@ -100,3 +100,16 @@ and execute it.
      |               testThis();                |
      |                                          |
      --------------------------------------------
+
+
+Usage
+-----
+
+.. code-block:: bash
+
+    $  purelyjs --test test/test_asserts.js
+    Running 10 tests on /usr/bin/js
+    ..........
+
+    ----------------------------------------------------------------------
+    Ran 10 tests in 0.568s
