@@ -107,7 +107,7 @@ Usage
 
 .. code-block:: bash
 
-    $  purelyjs --test test/test_asserts.js
+    $ purelyjs --test test/test_asserts.js
     Running 10 tests on /usr/bin/js
     ..........
 
