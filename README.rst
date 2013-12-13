@@ -105,7 +105,7 @@ and execute it.
 Usage
 -----
 
-Running with command line arguments:
+Run purelyjs with command line arguments:
 
 .. code-block::
 
@@ -117,7 +117,7 @@ Running with command line arguments:
     Ran 10 tests in 0.568s
 
 
-Using a purelyjs.ini file:
+You can also set up a purelyjs.ini file:
 
 .. code-block::
 
