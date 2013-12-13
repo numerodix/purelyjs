@@ -123,6 +123,7 @@ You can also set up a ``purelyjs.ini`` file:
 
     [purelyjs]
 
+    # will be tried in order, first to succeed will be used
     interpreters = 
         js
         rhino
