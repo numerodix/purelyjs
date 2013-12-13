@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from collections import Counter
 import logging
 import os
 import re
@@ -60,8 +59,13 @@ class TestRunner(object):
         return test_cases
 
     def check_test_case_uniqueness(self, test_cases):
-        counter = Counter(test_cases)
-        for test_case, num in counter.most_common():
+        dct = {}
+        for test_case in test_cases:
+            if not test_case in dct:
+                dct[test_case] = 0
+            dct[test_case] += 1
+
+        for test_case, num in dct.items():
             if num > 1:
                 logging.warn("Test case %s defined more than once" % test_case)
 
