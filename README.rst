@@ -105,7 +105,9 @@ and execute it.
 Usage
 -----
 
-.. code-block:: bash
+Running with command line arguments:
+
+.. code-block::
 
     $ purelyjs --test test/test_asserts.js
     Running 10 tests on /usr/bin/js
@@ -113,3 +115,20 @@ Usage
 
     ----------------------------------------------------------------------
     Ran 10 tests in 0.568s
+
+
+Using a purelyjs.ini file:
+
+.. code-block::
+
+    [purelyjs]
+
+    interpreters = 
+        js
+        rhino
+
+    libs = 
+        static/js/code.js
+
+    tests = 
+        static/js/test/tests.js
