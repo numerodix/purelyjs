@@ -1,6 +1,9 @@
 purely.js
 =========
 
+.. image:: https://badge.fury.io/py/purelyjs.png
+        :target: https://badge.fury.io/py/purelyjs
+
 .. image:: https://travis-ci.org/numerodix/purelyjs.png?branch=master
         :target: https://travis-ci.org/numerodix/purelyjs
 
