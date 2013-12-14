@@ -12,6 +12,15 @@ purely.js
 * Small library of JUnit-style testing primitives.
 
 
+Quickstart
+----------
+
+.. code-block::
+
+    $ pip install purelyjs
+    $ purelyjs
+
+
 Theory
 ------
 
