@@ -4,11 +4,11 @@ purely.js
 .. image:: https://badge.fury.io/py/purelyjs.png
         :target: https://badge.fury.io/py/purelyjs
 
-.. image:: https://travis-ci.org/numerodix/purelyjs.png?branch=master
-        :target: https://travis-ci.org/numerodix/purelyjs
-
 .. image:: https://pypip.in/d/purelyjs/badge.png
         :target: https://crate.io/packages/purelyjs/
+
+.. image:: https://travis-ci.org/numerodix/purelyjs.png?branch=master
+        :target: https://travis-ci.org/numerodix/purelyjs
 
 * Command line test runner with minimal hassle (only needs a javascript shell
   like node.js/rhino/spidermonkey - no browser).
