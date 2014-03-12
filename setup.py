@@ -1,9 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
+import purelyjs
+
 
 setup(
     name='purelyjs',
-    version='0.1',
-    description='Testing framework for javascript',
+    version=purelyjs.__version__,
+    description='A super simple testing framework for javascript',
     author='Martin Matusiak',
     author_email='numerodix@gmail.com',
 
