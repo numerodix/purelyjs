@@ -18,7 +18,7 @@ purely.js
 Quickstart
 ----------
 
-.. code-block::
+.. code:: bash
 
     $ pip install purelyjs
     $ purelyjs
@@ -122,7 +122,7 @@ Usage
 
 Run ``purelyjs`` with command line arguments:
 
-.. code-block::
+.. code:: bash
 
     $ purelyjs --test test/test_asserts.js
     Running 10 tests on /usr/bin/js
@@ -134,7 +134,7 @@ Run ``purelyjs`` with command line arguments:
 
 You can also set up a ``purelyjs.ini`` file:
 
-.. code-block::
+.. code:: bash
 
     [purelyjs]
 
