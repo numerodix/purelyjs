@@ -134,7 +134,7 @@ Run ``purelyjs`` with command line arguments:
 
 You can also set up a ``purelyjs.ini`` file:
 
-.. code:: bash
+.. code::
 
     [purelyjs]
 
