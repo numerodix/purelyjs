@@ -7,10 +7,9 @@ python:
   - "pypy"
 env:
   - INTERPRETER=/usr/bin/js
-  - INTERPRETER=/usr/bin/js17
   - INTERPRETER=/usr/bin/rhino
 before_install:
-  - sudo apt-get install libmozjs-17.0-bin nodejs rhino
+  - sudo apt-get install nodejs rhino
 install: "python setup.py install"
 script: purelyjs -i $INTERPRETER
 notifications:
