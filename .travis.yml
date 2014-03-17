@@ -4,11 +4,13 @@ python:
   - "2.7"
   - "3.2"
   - "3.3"
+  - "3.4"
   - "pypy"
 env:
   - INTERPRETER=/usr/bin/js
   - INTERPRETER=/usr/bin/rhino
 before_install:
+  - sudo apt-get update
   - sudo apt-get install nodejs rhino
 install: "python setup.py install"
 script: purelyjs -i $INTERPRETER
