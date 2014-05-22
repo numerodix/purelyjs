@@ -29,14 +29,14 @@ var purely = {
     assertEqual: function(x, y) {
         // jshint -W018
         if (!(x === y)) {
-            purely.throwAssertionError(x.toString() + ' === ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' === ' + (y && y.toString()));
         }
     },
 
     assertNotEqual: function(x, y) {
         // jshint -W018
         if (!(x !== y)) {
-            purely.throwAssertionError(x.toString() + ' !== ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' !== ' + (y && y.toString()));
         }
     },
 
@@ -44,28 +44,28 @@ var purely = {
     assertGreater: function(x, y) {
         // jshint -W018
         if (!(x > y)) {
-            purely.throwAssertionError(x.toString() + ' > ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' > ' + (y && y.toString()));
         }
     },
 
     assertGreaterEqual: function(x, y) {
         // jshint -W018
         if (!(x >= y)) {
-            purely.throwAssertionError(x.toString() + ' >= ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' >= ' + (y && y.toString()));
         }
     },
 
     assertLess: function(x, y) {
         // jshint -W018
         if (!(x < y)) {
-            purely.throwAssertionError(x.toString() + ' < ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' < ' + (y && y.toString()));
         }
     },
 
     assertLessEqual: function(x, y) {
         // jshint -W018
         if (!(x <= y)) {
-            purely.throwAssertionError(x.toString() + ' <= ' + y.toString());
+            purely.throwAssertionError((x && x.toString()) + ' <= ' + (y && y.toString()));
         }
     },
 
@@ -74,7 +74,7 @@ var purely = {
         var found = purely.contains(item, arr);
 
         if (!found) {
-            purely.throwAssertionError(item.toString() + ' not in ' + arr.toString());
+            purely.throwAssertionError((item && item.toString()) + ' not in ' + (arr && arr.toString()));
         }
     },
 
@@ -82,7 +82,7 @@ var purely = {
         var found = purely.contains(item, arr);
 
         if (found) {
-            purely.throwAssertionError(item.toString() + ' in ' + arr.toString());
+            purely.throwAssertionError((item && item.toString()) + ' in ' + (arr && arr.toString()));
         }
     },
 

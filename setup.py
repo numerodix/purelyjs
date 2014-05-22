@@ -13,7 +13,7 @@ setup(
     url='https://github.com/numerodix/purelyjs',
 
     packages=find_packages('.'),
-    package_dir = {'': '.'},
+    package_dir={'': '.'},
     package_data={
         'purelyjs': ['js/*.js'],
     },
@@ -34,6 +34,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
