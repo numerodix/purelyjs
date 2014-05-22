@@ -3,7 +3,8 @@ import tempfile
 
 
 class TestModule(object):
-    def __init__(self, testdir, interpreter, modules, test_case, keep_module=False):
+    def __init__(self, testdir, interpreter, modules, test_case,
+                 keep_module=False):
         self.testdir = testdir
         self.interpreter = interpreter
         self.modules = modules

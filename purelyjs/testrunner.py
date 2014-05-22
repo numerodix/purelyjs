@@ -19,7 +19,7 @@ from .testmodule import TestModule
 class TestRunner(object):
     def __init__(self, libs=None, tests=None, interpreters=None,
                  test_name_filter=None,
-                 keep_modules=False, verbose=False):
+                 collect_only=False, keep_modules=False, verbose=False):
         self.regexes_test_case = [
             # testSomething
             re.compile('^(?m)function\s+(test[A-Z][A-Z0-9a-z_]+)'),
@@ -36,9 +36,15 @@ class TestRunner(object):
 
         self.libs = expand_patterns(libs + [purely_js])
         self.tests = expand_patterns(tests)
+        self.collect_only = collect_only
         self.keep_modules = keep_modules
         self.test_name_filter = test_name_filter
         self.verbose = verbose
+
+        # If we're only collecting then run in verbose mode
+        # to display test names
+        if self.collect_only:
+            self.verbose = True
 
         self.interpreter = Interpreter(interpreters)
 
@@ -103,7 +109,11 @@ class TestRunner(object):
             if self.verbose:
                 write('%s... ' % module.test_case)
 
-            module.run()
+            # If we're just collecting then pretend it passed
+            if self.collect_only:
+                module.passed = True
+            else:
+                module.run()
 
             if module.passed:
                 write('.')
@@ -119,7 +129,8 @@ class TestRunner(object):
         failed_modules = [(i, m) for (i, m) in modules if not m.passed]
         for i, module in failed_modules:
             writeln('=' * 70)
-            writeln('FAILED (%s): %s (%s)' % (i, module.test_case, module.filepath))
+            writeln('FAILED (%s): %s (%s)' %
+                    (i, module.test_case, module.filepath))
             writeln('-' * 70)
             writeln(module.stderr)
             writeln()

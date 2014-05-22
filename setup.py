@@ -13,7 +13,7 @@ setup(
     url='https://github.com/numerodix/purelyjs',
 
     packages=find_packages('.'),
-    package_dir = {'': '.'},
+    package_dir={'': '.'},
     package_data={
         'purelyjs': ['js/*.js'],
     },
