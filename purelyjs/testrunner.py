@@ -18,6 +18,7 @@ from .testmodule import TestModule
 
 class TestRunner(object):
     def __init__(self, libs=None, tests=None, interpreters=None,
+                 test_name_filter=None,
                  keep_modules=False, verbose=False):
         self.regexes_test_case = [
             # testSomething
@@ -36,6 +37,7 @@ class TestRunner(object):
         self.libs = expand_patterns(libs + [purely_js])
         self.tests = expand_patterns(tests)
         self.keep_modules = keep_modules
+        self.test_name_filter = test_name_filter
         self.verbose = verbose
 
         self.interpreter = Interpreter(interpreters)
@@ -69,9 +71,18 @@ class TestRunner(object):
             if num > 1:
                 logging.warn("Test case %s defined more than once" % test_case)
 
+    def apply_name_filter(self, test_cases):
+        if self.test_name_filter:
+            test_cases = [case for case in test_cases
+                          if re.search(self.test_name_filter, case)]
+
+        return test_cases
+
     def run_tests(self, testdir):
         test_cases = self.find_all_test_cases(self.tests)
         self.check_test_case_uniqueness(test_cases)
+
+        test_cases = self.apply_name_filter(test_cases)
 
         num_tests = len(test_cases)
 
