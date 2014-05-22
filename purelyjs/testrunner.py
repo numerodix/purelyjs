@@ -120,7 +120,7 @@ class TestRunner(object):
             else:
                 write('F')
 
-            if self.verbose:
+            if self.verbose and not i == num_tests:
                 writeln()
 
         writeln()
