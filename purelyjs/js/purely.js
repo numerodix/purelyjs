@@ -109,7 +109,7 @@ var purely = {
         try {
             func();
         } catch (e) {
-            if ((e.name == 'TypeError') && (/^AssertionError: /.test(e.message))) {
+            if ((e.name === 'TypeError') && (/^AssertionError: /.test(e.message))) {
                 thrown = true;
             }
         }
