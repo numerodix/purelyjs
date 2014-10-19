@@ -45,7 +45,7 @@ function testAssertLessUndefined() {
     });
 }
 
-function testAssertLessEqualUndefinde() {
+function testAssertLessEqualUndefined() {
     purely.assertRaisesAssertion(function() {
         purely.assertLessEqual(1, undefined);
     });

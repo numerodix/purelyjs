@@ -22,7 +22,7 @@ class Interpreter(object):
         for engine in engines:
             # NOTE: Very platform specific
             success, stdout, stderr = invoke(['which', engine])
-            exe = stdout
+            exe = stdout.decode('utf8')
 
             # command exists, try executing a module on it
             if success:
