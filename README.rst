@@ -7,7 +7,7 @@ purely.js
 .. image:: https://travis-ci.org/numerodix/purelyjs.png?branch=master
         :target: https://travis-ci.org/numerodix/purelyjs
 
-.. image:: https://pypip.in/license/purelyjs/badge.png
+.. image:: https://img.shields.io/pypi/l/purelyjs.svg
         :target: https://pypi.python.org/pypi/purelyjs/
 
 * Command line test runner with minimal hassle (only needs a javascript shell
